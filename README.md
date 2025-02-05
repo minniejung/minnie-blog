@@ -278,7 +278,30 @@ e.g. 000000000000000000015ac6f0b07acb480cff6a6fd389350398cbe8455994a9
             C. 잠금 스크립트(ScriptPubKey) : 비트코인을 잠금(수신자의 주소를 설정)하는 스크립트
                                    일반적으로 P2PKH(Pay-to-Public-Key-Hash) 스크립트 형식을 사용, 수신자의 주소를 포함
 
+    - Transaction Counter
+        * 트랜잭션이 포함된 입력(Input)과 출력(Output)의 개수를 기록
+        * 각각 입력 개수와 출력 개수를 별도로 저장하며, 네트워크가 각 트랜잭션의 크기를 빠르게 파악할 수 있게 함
+        * 크기: 가변(1바이트 이상, 비트코인 직렬화 규칙에 따라 다름)
+
+    - Lock Time
+        * 해당 트랜잭션이 유효해지는 조건
+        * 특정 블록 높이 또는 타임스탬프가 설정될 수 있으며, 이 조건이 충족되어야 트랜잭션이 유효함
+        * 크기: 4바이트
+
 ```
+
+```
+[잠금 스크립트와 해제 스크립트 예시]
+    - P2PKH는 비트코인의 트래잭션 유형으로 "공개키(해시값)에 비트코인을 보내겠다.(Pay-to-Public-Key-Hash)"라는 형식
+        * ScriptSig (잠금 해제 스크립트): 입력에서 사용되며, 이전 트랜잭션 출력의 소유권을 증명하기 위해 사용
+        * ScriptPubKey (잠금 스크립트): 출력에서 사용되며, 수신자에게 비트코인을 보낼 주소를 지정
+
+    - ScriptPubKey (P2PKH 형식):
+        OP_DUP OP_HASH160 <Recipient's Public Key Hash> OP_EQUALVERIFY OP_CHECKSIG
+    - ScriptSig (서명 및 공개키):
+        <Signature> <Public Key>
+```
+
 
 ```
 What is UTXO ?
