@@ -339,6 +339,19 @@ What is UTXO(Unspent Transaction Output) ?
 
   - 한 블록이 악의적으로 수정되거나 변조되면 이후의 모든 블록의 해시 값을 다시 계산해야 함
   - 악의적인 노드가 변경된 체인이 전파되더라도, 네트워크 전체 노드의 51% 이상에 해당하는 컴퓨팅 파워를 확보하지 않는 한 무효로 간주
-
 ```
 
+```
+  (+) bitcoin 명령어
+      * getblockchaininfo : 비트코인 설정 파일 확인
+      * createwallet : 지갑 주소 생성
+      * getnewaddress : 지갑 주소 확인
+      * getbalance : 잔액 확인
+      * generatetoaddress 101 (복사한 지갑 주소) : 블록 생성(채굴)
+      * listunspent : 유효한 UTXO 확인
+      * listreceivedbyaddress 0 true : 내 주소들/잔고 확인
+      * sendtoaddress <받는 주소> <금액> : 비트코인 송금
+      * gettransaction (트랜잭션 ID) : 트랜잭션 상태 확인
+
+      사용방법 : bitcoin-cli -conf=(비트코인 데이터 디렉토리 경로)/bitcoin.conf 명령어
+```
