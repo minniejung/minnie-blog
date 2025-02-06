@@ -313,7 +313,7 @@ e.g. 000000000000000000015ac6f0b07acb480cff6a6fd389350398cbe8455994a9
 ## 05/02/2025 (3) - UTXO
 
 ```
-What is UTXO(Unspent Transaction Output) ?
+What is an UTXO(Unspent Transaction Output) ?
 
     - 트랜잭션에서 생성되었지만 아직 소비되지 않은 출력
     - 비트코인 네트워크에서 사용자의 잔고와 트랜잭션을 추적하는 기본 단위
@@ -367,8 +367,10 @@ What is UTXO(Unspent Transaction Output) ?
 ## 06/02/2025 (1) - DISTRIBUTED LEDGER
 
 ```
-Q. What is Ledger?
-A. 거래, 소유권, 자산 등 다양한 데이터와 정보를 기록하고 관리하는 시스템. 전통적으로는 종이 기록, 오늘날은 디지털화
+Q. What is a Ledger in Blockchain?
+A. A ledger in blockchain is a digital record-keeping system that stores all transactions in a decentralized and immutable manner.
+
+Ledget : 거래, 소유권, 자산 등 다양한 데이터와 정보를 기록하고 관리하는 시스템. 전통적으로는 종이 기록, 오늘날은 디지털화
 ```
 
 ```
@@ -404,6 +406,9 @@ A. 비트코인/이더리움과 같은 퍼블릭 블록체인/분산원장
 ```
 [DLT, Distributed Ledger Technology]
 
+Q. What is Distributed Ledger Technology (DLT)?
+A. DLT is a decentralized database system where transactions are stored across multiple nodes instead of a single centralized server. This ensures transparency, security, and immutability.
+
   - 합의 알고리즘 : 모든 노드가 데이터의 유효성과 순서를 검증하고 동일한 기록을 유지하기 위해 사용하는 방식 (PoW PoS PBFT 등)
   - 암호화 : 기밀성, 무결성, 사용자 신원을 인증하기 위해 사용, 위변조와 부인을 방지할 수 있음
   - 노드 동기화 : 모든 노드가 동일한 데이터를 유지하도록 하며 데이터의 일관성과 무결성을 보장
@@ -419,4 +424,78 @@ A. DLT는 데이터를 분산 저장하고 관리하는 모든 기술, 블록체
 ## 06/02/2025 (2) - NODE
 
 ```
+Q. What is a Node in Blockchain?
+A. A node in blockchain is a computer that participates in the blockchain network by maintaining a copy of the distributed ledger and validating transactions
+
+[노드의 역할]
+  - 데이터 저장, 데이터 검증, 네트워크 연결 및 데이터 전파, 합의 참여(PoW, PoS)
+
+[노드의 유형]
+  - 풀 노드 : e.g.비트코인 코어 노드. 블록체인의 모든 데이터를 저장하고, 트랜잭션과 블록의 유효성을 독립적으로 검증하는 노드
+  - 라이트 노드 / SPV 노드 : 필요한 최소의 데이터만 저장하여 작동. 80바이트 크기의 블록 헤더만 다운로드. e.g. 모바일 지갑
+  - 마이닝 노드 : PoW 수행하여 새로운 블록을 생성하는 노드, 합의 알고리즘에 참여하여 블록 보상을 얻음.
+  - 검증 노드 (Validator Node) : PoS 네트워크에서 블록 생성 및 검증, 주로 이더, 폴카닷, 솔라나에서 사용
+  - 아카이브 노드 : 블록체인의 모든 기록/상태를 저장하는 노드, 과거 기록 조회나 체인 전체 상태 분석에 사용.
+```
+
+
+## 06/02/2025 (3) - BFT (Byzantine Fault Tolerance)
+
+```
+[비잔틴 장애 허용(BFT)]
+
+  - 네트워크 내 일부 노드가 악의적이거나 오류를 발생시켜도,
+    나머지 정직한 노드가 올바른 합의에 도달하여 시스템이 정상적으로 작동하도록 보장하는 메커니즘
+```
+
+## 06/02/2025 (4) - Proof of Work
+
+```
+  - 네트워크 참여자(마이너)는 먼저 퍼즐을 푸는 사람이 보상을 받는 경쟁적 구조
+
+[Fork]
+  이유?
+    - 두 명 이상의 채굴자가 동시에 블록을 생성하여 네트워크에 전파했을 경우
+    - 네트워크 지연으로 일부 노드가 특정 블록을 먼저 수신하고, 다른 블록을 뒤늦게 수신했을 경우
+  분기 상태
+    - 두 체인의 길이가 동일하며, 각각 다른 노드 그룹에서 다른 체인을 유효한 체인으로 인식
+    - 이 상황에서 블록체인은 일시적으로 "체인 분기(Fork)" 상태가 됩니다
+
+  => 네트워크는 가장 긴 체인을 신뢰하며, 새 블록이 추가됨에 따라 다음 블록을 채굴하기 위한 작업반복
+
+[체인 리오르그(Chain Reorganization)]
+    - 기존 체인이 분기 체인 중 가장 긴 체인에 새롭게 이어지는 과정을 체인 리오르그
+    - 가장 긴 체인(가장 많은 작업량을 포함한 체인)이 더 많은 작업 증명을 했다고 합의(PoW) 했기 때문
+
+[Orphan Block]
+    - 네트워크가 새로운 체인을 메인 체인으로 선택하면, 기존의 짧은 체인의 블록들은 무효화됨
+    - 버려진 블록은 고아 블록(Orphan Block)으로 간주
+    - 이 고아 블록들은 다시 멤풀(메모리 풀)로 반환되어 다른 블록에 포함될 기회를 얻게 됨
+
+[PoW의 장점]
+    - 높은 보안성 : 전체 해시 파워의 51% 이상을 장악해야 네트워크 공격이 가능하고, 높은 비용이 요구되어 현실적으로 불가능
+    - 검증 용이성 : 블록 헤더의 해시 값을 계산하여 블록이 타켓값 조건을 만족하는지만 확인하면 됨
+
+[PoW의 단점]
+    - 채굴 과정에서 대량의 전력 소모
+    - 확장성 문제 : 트랜잭션 처리 속도가 제한적, 비트코인의 경우 초당 약 7건의 트랜잭션 처리
+    - 진입 장벽이 높음 : 일반 사용자의 참여가 어려움, 소수의 대교모 채굴 풀로 집중 됨
+    - 중앙화 위험 : 고성능 하드웨어와 막대한 전력비용을 요구하므로 채굴장비 제조사가 네트워크를 중앙화할 가능성이 있음
+
+[PoW 과반수 장악 위험성]
+    - 블록 생성 및 모든 보상 독점가능
+    - 이전의 트랜잭션을 취소하고 새로운 체인을 생성하며 코인을 다시 사용하는 이중 지불의 위험성이 있음
+    - 다른 채굴자들은 방해
+```
+
+## 06/02/2025 (5) - Proof of Stake
+
+```
+[]
+```
+
+## 06/02/2025 (6) - DPos
+
+```
+[]
 ```
