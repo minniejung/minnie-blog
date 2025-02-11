@@ -720,4 +720,34 @@ A. 탈중앙화 어플리케이션을 지원하는 프로그래밍 가능한 블
   - Git : 분산 버전 관리 시스템, Distributed Version Control System
   - 원격 저장소 제공 / 협업 도구 (PR/MR) / 코드 리뷰 / 이슈 트래킹
 
+[Git 태그]
+  - 특정 커밋을 가리키는 읽기 전용 reference
+  - 일반적으로는 릴리스 버전을 표시하기 위해 사용 e.g. v1.0.0, v2.1.3
+
+[Git 태그 유형]
+  - Annotated Tag (주석 태그)
+      - 작성자, 날짜, 주석 메시지를 포함할 수있음
+      - Git 데이터베이스에 저장되며 서명(GPG)도 가능
+      - git tag -a v1.0.0 -m "Initial release"
+
+  - Lightweight Tag (경량 태그)
+      - 주석 없이 커밋을 가리키는 단순한 태그
+      - 브랜치처럼 동작하며, 메타데이터가 포함되지 않음
+      - git tag v1.0.0
+
+  - 모든 태그 보기: git tag
+  - 특정 패턴에 해당하는 태그 보기: git tag -l "v1.*"
+  - 로컬 태그 삭제: git tag -d v1.0.0
+  - 원격 태그 삭제: git push origin --delete v1.0.0
+  - 특정 태그 푸시: git push origin v1.0.0
+  - 모든 태그 푸시: git push origin --tags
+  - 태그로 체크아웃: git checkout v1.0.0
+
+[버전 관리]
+  Semantic Versioning:
+    - 태그 이름에 시맨틱 버전(Semantic Versioning)을 따르는 것이 일반적
+    - 형식: MAJOR.MINOR.PATCH (예: v1.2.3)
+            * MAJOR: 호환되지 않는 변경 사항
+            * MINOR: 새로운 기능 추가
+            * PATCH: 버그 수정
 ```
